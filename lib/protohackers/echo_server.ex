@@ -13,14 +13,16 @@ defmodule Protohackers.EchoServer do
 
   defp accept() do
     port = 4001
+    listen_opts = [:binary, packet: :line, active: false, reuseaddr: true]
 
-    case :gen_tcp.listen(port, [:binary, packet: :line, active: false, reuseaddr: true]) do
+    case :gen_tcp.listen(port, listen_opts) do
       {:ok, socket} ->
         IO.puts("Listening - port #{port}")
         echo_server_loop(socket)
 
       {:error, reason} ->
         IO.puts("Your server's bugged. Fix it, idiot. Reason: #{reason}")
+        {:stop, reason}
     end
   end
 
