@@ -1,0 +1,35 @@
+# fly.toml app configuration file generated for echoserver-badtuxx on 2023-06-20T18:29:53-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "echoserver-badtuxx"
+primary_region = "yul"
+kill_signal = "SIGTERM"
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
+
+[env]
+  LOG_LEVEL = "debug"
+  TCP_PORT = "4001"
+  UDP_PORT = "6000"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 4001
+
+  [[services.ports]]
+    port = 4001
+
+[[services]]
+  protocol = "udp"
+  internal_port = 6000
+
+  [[services.ports]]
+    port = 6000
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 250
+    soft_limit = 200
