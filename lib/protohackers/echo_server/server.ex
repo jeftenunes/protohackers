@@ -1,4 +1,4 @@
-defmodule Protohackers.EchoServer do
+defmodule Protohackers.EchoServer.Server do
   use GenServer
 
   defstruct [:socket, :supervisor]

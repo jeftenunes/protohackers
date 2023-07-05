@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for echoserver-badtuxx on 2023-06-20T18:29:53-04:00
+# fly.toml app configuration file generated for primetime-badtuxx on 2023-07-04T23:17:09-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "echoserver-badtuxx"
+app = "primetime-badtuxx"
 primary_region = "yul"
 kill_signal = "SIGTERM"
 kill_timeout = "5s"
@@ -22,6 +22,13 @@ kill_timeout = "5s"
 
   [[services.ports]]
     port = 4001
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+
+  [[services.ports]]
+    port = 8080
 
 [[services]]
   protocol = "udp"
